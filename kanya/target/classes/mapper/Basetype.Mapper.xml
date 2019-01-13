@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sys.dao.impl.BasetypeDaoImpl">
+
+	<sql id="table"> basetype </sql>
+
+    <select id="findBasetypeList"  parameterType="java.util.Map"  resultType="com.sys.entity.Basetype">
+        select  *  from  <include refid="table" /> 
+         where 1=1 and status!=9
+         <if test="type != null">
+           and  type=#{type}
+        </if>
+        <if test="keywords != null">
+           and  name like concat('%', #{keywords}, '%')
+        </if>
+    </select>
+
+    <select id="getBasetypeListByType"  parameterType="java.lang.String"  resultType="com.sys.entity.Basetype">
+        select  *  from  <include refid="table" /> 
+         where 1=1 and status=0
+         <if test="_parameter != null">
+           and  type=#{_parameter}
+        </if>
+    </select>
+    
+
+
+</mapper>

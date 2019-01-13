@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sys.dao.impl.AppUserDaoImpl">
+
+	<sql id="table"> app_user </sql>
+
+    <select id="findAppUserList"  parameterType="java.util.Map"  resultType="com.sys.entity.App_user">
+        select * from  <include refid="table" /> 
+         where 1=1
+        <if test="keywords != null">
+           and name like concat('%', #{keywords}, '%') 
+        </if>       
+    </select>
+    
+    <select id="getAppUserByOpenId"  parameterType="java.util.Map"  resultType="com.sys.entity.App_user">
+         select  *  from  <include refid="table" /> 
+         where 1=1 and  openId = #{openId}
+    </select>
+    
+    <select id="getAppUserByPhone"  parameterType="java.util.Map"  resultType="com.sys.entity.App_user">
+         select  *  from  <include refid="table" /> 
+         where 1=1 and  phone = #{phone}
+    </select> 
+</mapper>

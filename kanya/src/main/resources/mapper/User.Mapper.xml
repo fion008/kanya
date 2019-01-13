@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sys.dao.impl.UserDaoImpl">
+
+	<sql id="table"> user </sql>
+
+    <select id="findUserList"  parameterType="java.util.Map"  resultType="java.util.HashMap">
+        select  u.*,r.name roleName  from  <include refid="table" /> u,role r
+         where u.roleId=r.id and u.status!=9
+        <if test="keywords != null">
+           and ( u.name like concat('%', #{keywords}, '%') or u.login_name  like concat('%', #{keywords}, '%') )
+        </if>       
+    </select>
+    
+    <select id="findUserByAccount"  parameterType="java.util.Map"  resultType="com.sys.entity.User">
+         select  *  from  <include refid="table" /> 
+         where 1=1 and  ${type}=#{account}
+    </select>
+    
+</mapper>

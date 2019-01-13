@@ -1,0 +1,78 @@
+[
+  {
+    "title": "后台首页",
+    "icon": "icon-computer",
+    "href": "page/home.html",
+    "spread": false
+  },
+  {
+    "title": "系统管理",
+    "icon": "&#xe630;",
+    "href": "",
+    "spread": false,
+    "children": [
+      {
+        "title": "用户管理",
+        "icon": "&#xe61c;",
+        "href": "page/sysMan/userList.html",
+        "spread": false
+      },      
+      {
+        "title": "角色管理",
+        "icon": "&#xe61c;",
+        "href": "page/sysMan/roleList.html",
+        "spread": false
+      },
+      {
+        "title": "资源管理",
+        "icon": "&#xe61c;",
+        "href": "page/sysMan/resourceList.html",
+        "spread": false
+      },
+      {
+        "title": "枚举管理",
+        "icon": "&#xe61c;",
+        "href": "page/sysMan/basetype.html?type=GRADE",
+        "spread": false
+      }
+    ]
+  }, 
+  {
+    "title": "医生管理",
+    "icon": "&#xe630;",
+    "href": "page/busMan/doctorList.html",
+    "spread": false
+  },
+    {
+    "title": "患者管理",
+    "icon": "&#xe630;",
+    "href": "page/busMan/patientsList.html",
+    "spread": false
+  },
+    {
+    "title": "小程序用户管理",
+    "icon": "&#xe630;",
+    "href": "page/busMan/appuserList.html",
+    "spread": false
+  },
+    {
+    "title": "中断事件类型",
+    "icon": "&#xe630;",
+    "href": "page/busMan/interruptTypeList.html",
+    "spread": false
+  },
+    {
+    "title": "治疗方案管理",
+    "icon": "&#xe630;",
+    "href": "page/busMan/curePlanList.html",
+    "spread": false
+  },
+    {
+    "title": "固定事件管理",
+    "icon": "&#xe630;",
+    "href": "page/busMan/fixedEventList.html",
+    "spread": false
+  }
+  
+
+]

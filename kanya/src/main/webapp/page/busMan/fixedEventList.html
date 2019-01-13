@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>固定事件管理</title>
+<link rel="stylesheet" href="../../layui/css/layui.css">
+<script src="../../js/jquery-3.1.1.min.js"></script>
+<script src="../../framework/layui/layui.js"></script>
+<script src="../../js/common.js"></script>
+<script src="../../js/busMan/fixedEventList.js"></script>
+
+<style>
+#my-table {
+	text-align: center;
+}
+
+.layui-form-label {
+	width: 60px;
+}
+
+.layui-input-inline {
+	width: 130px ! important;
+}
+
+.rightText {
+	position: absolute;
+	right: 10px;
+}
+
+.centerBtn {
+	margin-top: 80px;
+	text-align: center;
+}
+.tupian{
+    height: 100px;
+    width: 100px;
+}
+ .layui-upload-img{
+    height: 100px;
+    width: 150px;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body style="padding-left: 40px; padding-top:50px">
+	<form id="paramFrom" class="layui-form" onsubmit="return false;">
+		<div class="layui-form-item">
+			<label class="layui-form-label">名称</label>
+			<div class="layui-input-inline" style="width: 180px ! important;">
+				<input id="keywords" type="text" name="keywords" placeholder="请输入名称"
+					autocomplete="off" class="layui-input">
+			</div>
+			<div class="layui-input-inline"
+				style="width:60px ! important;margin-left:20px">
+				<button id="searchBtn" class="layui-btn layui-btn-primary">搜索</button>
+			</div>
+			<div class="rightText" style="width:60px ! important">
+				<button id="addBtn" class="layui-btn">新增</button>
+			</div>
+		</div>
+	</form>
+	<table class="layui-table">
+		<thead>
+			<tr>
+				<th>编号</th>
+				<th>名称</th>
+				<th>时间</th>
+				<th>内容</th>
+				<th>状态</th>
+				<th width="300px">操作</th>
+			</tr>
+		</thead>
+		<tbody id="data-table">
+		</tbody>
+	</table>
+	<div id="my-table"></div>
+
+	<!-- 新增或者修改  -->
+	<div id="modifyDiv" hidden="hidden" style="padding: 50px">
+		<form id="modifyForm" class="layui-form" onsubmit="return false;">
+			<input type="hidden" id="id" name="id" value="">
+			<div class="layui-form-item">
+				<label class="layui-form-label">名称</label>
+				<div class="layui-input-block">
+					<input id="name" type="text" name="name" lay-verify="required"
+						placeholder="请输入名称" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">时间</label>
+				<div class="layui-input-block">
+					<input id="time" type="text" name="time" lay-verify="required" lay-verify="date"
+						placeholder="请输入时间" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">内容</label>
+				<div class="layui-input-block">
+					<input id="content" type="text" name="content" lay-verify="required"
+						placeholder="请输入内容" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="centerBtn">
+				<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+				<button class="layui-btn" id="cancelBtn">取消</button>
+			</div>
+		</form>
+	</div>
+
+
+</body>
+</html>

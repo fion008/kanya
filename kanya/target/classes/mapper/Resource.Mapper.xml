@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sys.dao.impl.ResourceDaoImpl">
+
+	<sql id="table"> resource </sql>
+
+    <select id="findResourceList"  parameterType="java.util.Map"  resultType="java.util.HashMap">
+        select  r1.*,r2.name pName from  <include refid="table" /> r1 left join  resource r2
+         on r1.pid=r2.id
+         where 1=1 and r1.status!=9
+        <if test="keywords != null">
+           and  r1.name like concat('%', #{keywords}, '%')  
+        </if>       
+    </select>
+
+     <select id="getResourceList"  parameterType="java.util.Map"  resultType="com.sys.entity.Resource">
+        select  * from  <include refid="table" /> 
+         where 1=1 and status!=9
+        <if test="type != null">
+           and  type = #{keywords} 
+        </if>       
+    </select>
+  
+    <select id="getResourceByRoleId"  parameterType="java.util.Map"  resultType="com.sys.response.ResourceResp">
+        select  r.id id,r.name title,r.icon icon,r.url href,r.spread 
+         from  <include refid="table" /> r ,role_resource rr
+         where r.id=rr.resourceId and r.status!=9
+        <if test="roleId != null">
+           and  rr.roleId = #{roleId} 
+        </if> 
+       <if test="pid != null">
+           and  r.pid = #{pid} 
+        </if>         
+        order by r.sort asc
+    </select>  
+    
+    
+    <select id="getAllResourceByRoleId"  parameterType="java.util.Map"  resultType="com.sys.response.RoleResourceResp">
+       SELECT  r.id ,r.name,rr.id rid, IF(rr.id IS NOT NULL ,'true','false') AS checked
+        FROM  `resource` r LEFT JOIN `role_resource` rr ON  r.id=rr.`resourceId`
+        <if test="roleId != null">
+           and  rr.roleId = #{roleId} 
+        </if> 
+        where  r.status!=9
+       <if test="pid != null">
+           and  r.pid = #{pid} 
+        </if>         
+        order by r.sort asc
+    </select>     
+</mapper>

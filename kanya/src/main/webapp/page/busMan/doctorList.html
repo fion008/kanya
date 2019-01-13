@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>医生管理</title>
+	<link rel="stylesheet" href="../../layui/css/layui.css">
+	<script src="../../js/jquery-3.1.1.min.js"></script>
+	<script src="../../framework/layui/layui.js"></script>
+	<script src="../../js/common.js"></script>
+	<script src="../../js/busMan/doctorList.js"></script>
+	
+		<style>
+		#my-table{
+			text-align : center;
+		}
+		.layui-form-label {
+			width : 60px;
+		}
+		.layui-input-inline {
+			width : 130px ! important;
+		}
+		.rightText{
+		    position: absolute;
+            right: 10px;
+		}
+		.centerBtn{
+			margin-top:80px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body style="padding-left: 40px; padding-top:50px">
+	<form id="paramFrom" class="layui-form" onsubmit="return false;">
+		<div class="layui-form-item">
+			<label class="layui-form-label">名称</label>
+			<div class="layui-input-inline" style="width: 180px ! important;" >
+      			<input id="keywords" type="text" name="keywords"  placeholder="请输入名称" autocomplete="off" class="layui-input">
+   			</div>      						
+			<div class="layui-input-inline" style="width:60px ! important;margin-left:20px">
+				<button id="searchBtn" class="layui-btn layui-btn-primary">搜索</button>
+			</div>
+			<div class="rightText" style="width:60px ! important">
+				<button id="addBtn" class="layui-btn">新增</button>
+			</div>			
+		</div>
+	</form>
+	<table class="layui-table">
+		<thead>
+			<tr>
+				<th>编号</th>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>性别</th>
+				<th>手机号</th>
+				<th>职称</th>
+				<th>单位</th>
+				<th>科室</th>
+				<th>状态</th>
+				<th width="300px">操作</th>
+			</tr> 
+  		</thead>
+		<tbody id="data-table">
+		</tbody>
+	</table>
+	<div id="my-table"></div>
+	
+	<!-- 新增或者修改  -->
+	<div id="modifyDiv" hidden="hidden" style="padding: 50px">
+		<form id="modifyForm" class="layui-form" onsubmit="return false;">
+			<input type="hidden" id="id"  name="id"  value="">
+  			<div class="layui-form-item">
+    			<label class="layui-form-label">姓名</label>
+    			<div class="layui-input-block">
+      				<input id="ysname" type="text" name="ysname" lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+    			</div>
+  			</div>	
+  			<div class="layui-form-item">
+    			<label class="layui-form-label">年龄</label>
+    			<div class="layui-input-block">
+      				<input id="ysage" type="text" name="ysage"  placeholder="请输入年龄" autocomplete="off" class="layui-input">
+    			</div>
+  			</div>		
+  			<div class="layui-form-item">
+    			<label class="layui-form-label">性别</label>
+    			<div class="layui-input-block">
+    			  <input type="radio" id="ysgender1" name="ysgender" zhi="M"  title="男" >
+                  <input type="radio" id="ysgender2" name="ysgender"  zhi="W"  title="女" >
+    			</div>
+  			</div>	
+  			<div class="layui-form-item">
+    			<label class="layui-form-label">手机号</label>
+    			<div class="layui-input-block">
+      				<input id="ysphnum" type="number" name="ysphnum" lay-verify="required" placeholder="请输入手机号" autocomplete="off" class="layui-input">
+    			</div>
+  			</div>	
+  			<div class="layui-form-item">
+    			<label class="layui-form-label">职称</label>
+  				<div class="layui-input-block">
+				  <select id=ysgrade class="my-select" name="ysgrade"  lay-search>
+				  </select> 
+				</div>
+  			</div>  	
+  			<div class="layui-form-item">
+    			<label class="layui-form-label">单位</label>
+    			<div class="layui-input-block">
+      				<input id="ysgroup" type="text" name="ysgroup" lay-verify="required" placeholder="请输入单位" autocomplete="off" class="layui-input">
+    			</div>
+  			</div>   
+  			<div class="layui-form-item">
+    			<label class="layui-form-label">科室</label>
+    			<div class="layui-input-block">
+      				<input id="ysteam" type="text" name="ysteam" lay-verify="required" placeholder="请输入科室" autocomplete="off" class="layui-input">
+    			</div>
+  			</div>     								  							 			
+  			<div class="centerBtn">
+	      		<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+	      		<button class="layui-btn" id="cancelBtn">取消</button>
+      		</div>
+		</form>
+	</div>
+	
+	
+</body>
+ </html>

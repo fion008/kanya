@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sys.dao.impl.CurePlanDaoImpl">
+
+	<sql id="table"> cure_plan </sql>
+
+    <select id="findCurePlanList"  parameterType="java.util.Map"  resultType="com.sys.entity.Cure_plan">
+        select  *  from  <include refid="table" /> 
+         where 1=1  and status!=9
+        <if test="keywords != null">
+           and  name like concat('%', #{keywords}, '%')
+        </if>
+    </select>
+
+
+    
+</mapper>

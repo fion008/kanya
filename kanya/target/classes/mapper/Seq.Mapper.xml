@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sys.dao.impl.SeqDaoImpl">
+
+	<sql id="table"> seq </sql>
+
+    <select id="getSeqByName"  parameterType="java.lang.String"  resultType="com.sys.entity.Seq">
+        select  *  from  <include refid="table" /> 
+         where 1=1  
+         <if test="_parameter != null">
+           and  seqName=#{_parameter}
+        </if>
+
+    </select>
+
+
+    
+
+
+</mapper>

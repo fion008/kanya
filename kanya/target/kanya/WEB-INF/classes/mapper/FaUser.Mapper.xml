@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sys.dao.impl.FaUserDaoImpl">
+
+	<sql id="table"> fa_user </sql>
+
+    <select id="findFaUserList"  parameterType="java.util.Map"  resultType="java.util.HashMap">
+        select  f.*,b.name ysgradeName  from  <include refid="table" />  f,basetype b
+         where f.ysgrade=b.id and f.status!=9
+        <if test="keywords != null">
+           and  f.name like concat('%', #{keywords}, '%')
+        </if>
+    </select>
+
+    <select id="getFaUserByPhone"  parameterType="java.lang.String"  resultType="com.sys.entity.Fa_user">
+        select  *  from  <include refid="table" /> 
+         where 1=1 and status!=9 and ysphnum=#{phone}
+    </select>
+    
+</mapper>

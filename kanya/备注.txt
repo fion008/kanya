@@ -1,0 +1,104 @@
+小程序接口
+URL：localhost://8080/kanya/m
+
+登录接口  appuser/login    参数 code  返回 userId openId
+发送短信  appuser/sendCode  参数 phone 返回 code(前台可直接校验code)
+绑定手机号  appuser/updatePhone 参数 id(用户编号) phone  name avatar 返回
+
+增加患者 patients/update
+name  姓名
+age  年龄
+avatar 头像
+app_user_id 患者代表编号
+
+查询某个用户的患者 patients/byAppUserId 参数  app_user_id  返回
+
+
+增加患者计划   plan/update
+
+patientsId int(11) NULL患者编号
+step varchar(50) NULL步数
+day int(11) NULL天数
+current_step int(11) NULL当前步数
+current_day int(11) NULL当前天数
+start_time date NULL开始时间
+end_time date NULL结束时间
+cure_plan int(11) NULL治疗方案
+createtime timestamp NOT NULL创建时间
+
+
+查询某个患者的 计划   plan/byPatientsId  传入参数patientsId
+删除患者计划   plan/delete  传入参数patientsId
+矫正方案列表   cureplan/pagelist  
+
+中断事件类型 interruptType/pagelist
+
+
+
+增加计划历史  historyplan/update
+patientsId  int(11) NULL患者编号
+step  varchar(50) NULL步数
+cumulative_hours int(11) NULL累计时间小时
+cumulative_days  int(11) NULL累计时间天数
+start_time  date NULL开始时间
+end_time  date NULL结束时间
+createtime  timestamp NOT NULL创建时间
+
+查询某个患者的计划 historyplan/byPatientsId 
+
+
+中断事件增加interruptEvent/update
+id  int(11) NOT NULL主键
+patientsId  int(11) NULL患者编号
+name  varchar(20) NULL名称
+start_time  datetime NULL开始时间
+end_time  datetime NULL结束时间
+expected_end_time datetime NULL预计结束时间
+content  varchar(255) NULL事件内容
+status  smallint(3) NULL状态0未执行 1已执行
+type  int(11) NULL中断类型
+length  varchar(255) NULL中断时长
+createtime  timestamp NOT NULL创建时间
+
+中断事件列表interruptEvent/list
+Long patientsId,
+Integer status,
+String date "yyyy-MM-dd"
+
+戴回牙套 interruptEvent/change
+Long patientsId
+Long type
+
+患者关联医生 patients/updateDoctor
+ Long patientsId
+ Long doctorId
+
+根据医生查询患者patients/pagelist  参数 Long doctorId  
+可以分页
+pageNum = 1; // 当前页数
+numPerPage = 20; // 每页记录数
+	
+查询医生信息fauser/byAppUserId 参数app_user_id	
+	
+	
+###修改
+域名：https://yh.yunboi.com/kanya/index.html
+
+resource 增加 spread
+医生 ysphnum 改为varchar
+
+plan表改动
+cure_plan eventIds varchar(255) NULL事件编号
+interruptEvent 增加 isRemind
+
+CREATE TABLE `event_remind` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `patientsId` int(11) DEFAULT NULL COMMENT '患者编号',
+  `time` datetime DEFAULT NULL COMMENT '提醒时间',
+  `title` varchar(100) DEFAULT NULL COMMENT '提醒标题',
+  `content` varchar(255) DEFAULT NULL COMMENT '提醒内容',
+  `status` smallint(3) DEFAULT '0' COMMENT '状态 0未执行 1已执行',
+  `add_user` int(11) DEFAULT NULL COMMENT '增加人',
+  `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='事件提醒(医生为病人添加的)'
