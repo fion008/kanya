@@ -96,7 +96,7 @@
 
 		<!-- alibaba fastjson 格式化对 -->
 		<!-- <dependency> <groupId>com.alibaba</groupId> <artifactId>fastjson</artifactId> 
-			<version>1.1.41</version> </dependency> -->
+			<version>1.2.83</version> </dependency> -->
 
 		<!-- logback start -->
 		<dependency>
@@ -224,7 +224,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.1.41</version>
+			<version>1.2.83</version>
 		</dependency>
 		<!-- MD5 -->
 		<dependency>
