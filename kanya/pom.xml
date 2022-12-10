@@ -13,7 +13,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- 版本 -->
-		<spring.version>4.3.18</spring.version>
+		<spring.version>6.0.0</spring.version>
 		<mybatis.version>3.4.1</mybatis.version>
 		<slf4j.version>1.7.5</slf4j.version>
 		<log4j.version>1.2.17</log4j.version>
